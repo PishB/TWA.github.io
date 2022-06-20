@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <BOModel>
+    <Class Name="TradingWebApp.Module.BusinessObjects.ChangeContract">
+      <AppearanceRules>
+        <AppearanceRule Id="@b1afa6c0-1d8c-45c0-b6d5-767ef0be3c31" Visibility="Hide" Criteria="[Contracts] Is Null" TargetItems="ContractCost,ContractNo" IsNewNode="True" />
+      </AppearanceRules>
+    </Class>
+    <Class Name="TradingWebApp.Module.BusinessObjects.Contract">
+      <AppearanceRules>
+        <AppearanceRule Id="@ad51b514-1803-4792-a6dc-c4cc7d639abe" Visibility="Hide" TargetItems="Sign1" Criteria="[ContractConfirmation] = ?" IsNewNode="True" />
+      </AppearanceRules>
+    </Class>
+    <Class Name="TradingWebApp.Module.BusinessObjects.Users">
+      <OwnMembers>
+        <Member Name="UserName" AllowEdit="False" />
+      </OwnMembers>
+    </Class>
+  </BOModel>
+  <NavigationItems StartupNavigationItem="ChangeContract_ListView">
+    <Items>
+      <Item Id="Default">
+        <Items>
+          <Item Id="Contract_ListView" Caption="قرارداد" Index="0" />
+          <Item Id="ChangeContract_ListView" Caption="تغییر قرارداد" Index="1" />
+          <Item Id="Users_ListView" Caption="کاربران" Index="2" />
+          <Item Id="AccountInfo_ListView" Visible="False" />
+          <Item Id="Attachment_ListView" Visible="False" />
+          <Item Id="ContractInfo_ListView" Visible="False" />
+          <Item Id="ContractType_ListView" Caption="نوع قرارداد" Visible="True" />
+          <Item Id="Document_ListView" Visible="False" />
+          <Item Id="MyDetails" Caption="دسترسی های من" />
+          <Item Id="PermissionPolicyRole_ListView" Caption="نقش ها" />
+          <Item Id="PermissionPolicyUser_ListView" Caption="کاربران" />
+          <Item Id="TaskCardView" ViewId="TaskCardView" Visible="False" IsNewNode="True" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+  <SchemaModules>
+    <SchemaModule Name="SystemAspNetModule" Version="19.1.3.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="19.1.3.0" IsNewNode="True" />
+  </SchemaModules>
+  <Validation>
+    <Rules>
+      <RuleRequiredField Id="ContractCost" TargetContextIDs="Save" TargetType="TradingWebApp.Module.BusinessObjects.Contract" TargetPropertyName="ContractCost" IsNewNode="True" />
+      <RuleRequiredField Id="ContractName" TargetType="TradingWebApp.Module.BusinessObjects.Contract" TargetContextIDs="Save" TargetPropertyName="ContractName" IsNewNode="True" />
+      <RuleRequiredField Id="ContractNo" TargetContextIDs="Save" TargetType="TradingWebApp.Module.BusinessObjects.Contract" TargetPropertyName="ContractNo" IsNewNode="True" />
+      <RuleRequiredField Id="Title" TargetType="TradingWebApp.Module.BusinessObjects.Contract" TargetContextIDs="Save" TargetPropertyName="Title" IsNewNode="True" />
+    </Rules>
+  </Validation>
+  <Views>
+    <DetailView Id="AuthenticationStandardLogonParameters_DetailView" Caption="ورود به سامانه" CaptionLocation="Right" CaptionVerticalAlignment="Center" EnableCaptionColon="False" RequiredFieldMark="&lt;b&gt;&lt;font color = &quot;red&quot;&gt; * &lt;/font&gt;&lt;/b&gt;" CollectionsEditMode="View" DefaultFocusedItem="LogonText">
+      <Items>
+        <StaticImage Id="LogonImage" SvgImageHeight="70" SvgImageWidth="35" Caption="LogonImage(4)" />
+        <StaticText Id="LogonText" Text="لطفا نام کاربری و کلمه عبور را وارد کنید" Caption="LogonText(7)" />
+        <PropertyEditor Id="Password" Caption="رمز عبور" />
+        <ActionContainerViewItem Id="RegisterUserActionItem" Caption="RegisterUserActionItem(11)" PaintStyle="Image" IsNewNode="True" />
+        <ActionContainerViewItem Id="RestorePasswordActionItem" Caption="RestorePasswordActionItem(14)" PaintStyle="Image" IsNewNode="True" />
+        <ControlDetailItem Id="SamimCaptcha" ControlTypeName="ASPxCaptcha" Caption="کد امنیتی" IsNewNode="True" />
+        <PropertyEditor Id="UserName" Caption="نام کاربری" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="RootGroup" Direction="Vertical" RelativeSize="100">
+            <LayoutGroup Id="EditorsGroup" RelativeSize="100" Index="0">
+              <LayoutGroup Id="Text" RelativeSize="5.5956678700361007" IsCardGroup="False" />
+              <LayoutGroup Id="Editors" RelativeSize="94.4043321299639" IsCardGroup="False" />
+            </LayoutGroup>
+            <LayoutGroup Id="ImageGroup" Removed="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="ChangeContract_DetailView">
+      <Items>
+        <PropertyEditor Id="ContractCost" PropertyName="Contracts.ContractCost" IsNewNode="True" />
+        <PropertyEditor Id="ContractNo" Caption="شماره درخواست" PropertyName="Contracts.ContractNo" DataSourcePropertyIsNullMode="SelectNothing" IsNewNode="True" />
+        <PropertyEditor Id="Contracts" DataSourceCriteria="" ImmediatePostData="True" />
+        <PropertyEditor Id="RequestNo" Caption="شماره درخواست" />
+        <PropertyEditor Id="UserName" AllowEdit="False" Caption="نام کاربر" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="14.144736842105264">
+            <LayoutGroup Id="ChangeContract" RelativeSize="100" Caption="ChangeContract">
+              <LayoutGroup Id="Autoc3f87fa3-5b73-4488-99df-5475d5065658" ShowCaption="False" Caption="" Direction="Horizontal" Index="0" RelativeSize="65.116279069767444" IsNewNode="True">
+                <LayoutGroup Id="Autodd32f3ef-467d-4983-97db-640fd781d0ea" ShowCaption="False" Caption="" Index="0" RelativeSize="50" IsNewNode="True">
+                  <LayoutItem Id="RequestNo" ViewItem="RequestNo" Index="0" RelativeSize="57.142857142857146" IsNewNode="True" />
+                  <LayoutItem Id="Contracts" ViewItem="Contracts" Index="1" RelativeSize="42.857142857142854" IsNewNode="True" />
+                </LayoutGroup>
+                <LayoutGroup Id="Auto2ef07735-e9ad-436f-a69e-6b73bf4c96c1" ShowCaption="False" Caption="" Index="1" RelativeSize="50" IsNewNode="True">
+                  <LayoutItem Id="ContractNo" ViewItem="ContractNo" Index="0" RelativeSize="57.142857142857146" IsNewNode="True" />
+                  <LayoutItem Id="ContractCost" ViewItem="ContractCost" Index="1" RelativeSize="42.857142857142854" IsNewNode="True" />
+                </LayoutGroup>
+              </LayoutGroup>
+              <LayoutItem Id="UserName" RelativeSize="34.883720930232556" Index="1" />
+              <LayoutItem Id="Contracts" RelativeSize="27.906976744186046" Removed="True" />
+              <LayoutItem Id="RequestNo" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="Attachments_Group" Direction="Vertical" RelativeSize="85.85526315789474">
+            <LayoutItem Id="Attachments" RelativeSize="100" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="ChangePasswordOnLogonParameters_DetailView" Caption="تغییر کلمه عبور در اولین ورود" CollectionsEditMode="View" RequiredFieldMark="&lt;b&gt;&lt;font color = &quot;red&quot;&gt; * &lt;/font&gt;&lt;/b&gt;" EnableCaptionColon="False" CaptionLocation="Right" />
+    <DetailView Id="ChangePasswordParameters_DetailView" RequiredFieldMark="&lt;b&gt;&lt;font color = &quot;red&quot;&gt; * &lt;/font&gt;&lt;/b&gt;" Caption="تغییر کلمه عبور" CollectionsEditMode="View" EnableCaptionColon="False" CaptionLocation="Right" />
+    <DetailView Id="Contract_DetailView">
+      <Items>
+        <PropertyEditor Id="Sign1" AllowEdit="False" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="29.868421052631579">
+            <LayoutGroup Id="Contract" RelativeSize="85.903083700440533">
+              <LayoutGroup Id="Contract_col1" RelativeSize="49.825479930191975">
+                <LayoutItem Id="Title" RelativeSize="58.333333333333336" SizeConstraintsType="Custom" MinSize="338, 57" />
+                <LayoutItem Id="ContractName" RelativeSize="12.5" />
+                <LayoutItem Id="ContractNo" RelativeSize="12.5" />
+                <LayoutItem Id="ContractDateRegistration" RelativeSize="16.666666666666668" />
+              </LayoutGroup>
+              <LayoutGroup Id="Contract_col2" RelativeSize="50.174520069808025" Caption="Contract_col2">
+                <LayoutItem Id="ContractCost" RelativeSize="16.666666666666668" />
+                <LayoutItem Id="ContractConfirmation" ViewItem="ContractConfirmation" Index="1" RelativeSize="18.75" Removed="True" />
+                <LayoutItem Id="ContractTypes" Index="1" RelativeSize="12.5" />
+                <LayoutItem Id="Sign1" Index="2" RelativeSize="70.833333333333329" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="Auto6bec49d0-4e42-4169-bb1f-8da1e75b697a" ShowCaption="False" Caption="Auto6bec49d0-4e42-4169-bb1f-8da1e75b697a(13)" Direction="Horizontal" Index="1" RelativeSize="14.096916299559471" IsNewNode="True">
+              <LayoutItem Id="SignOfConfirmContract" ViewItem="SignOfConfirmContract" Index="0" RelativeSize="43.66554054054054" SizeConstraintsType="Custom" MinSize="517, 64" MaxSize="517, 64" IsNewNode="True" />
+              <LayoutItem Id="ContractConfirmation" ViewItem="ContractConfirmation" Index="1" RelativeSize="56.33445945945946" IsNewNode="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutItem Id="Item1" Index="1" RelativeSize="3.6184210526315788" IsNewNode="True" />
+          <TabbedGroup Id="Tabs" RelativeSize="66.513157894736835" Index="2">
+            <LayoutGroup Id="Attachments" Index="0" RelativeSize="100" Caption="ضمائم">
+              <LayoutItem Id="Attachments" RelativeSize="35.063559322033896" />
+              <LayoutItem Id="WebForm1" ViewItem="WebForm1" Index="1" RelativeSize="4.4491525423728815" IsNewNode="True" />
+              <LayoutItem Id="Item2" Index="2" RelativeSize="60.487288135593218" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="ChangeContract" Removed="True" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="Contract_DetailView_Copy" ClassName="TradingWebApp.Module.BusinessObjects.Contract" IsNewNode="True">
+      <Items IsNewNode="True">
+        <PropertyEditor Id="Attachments" PropertyName="Attachments" View="Contract_Attachments_ListView" IsNewNode="True" />
+        <PropertyEditor Id="ChangeContract" PropertyName="ChangeContract" View="Contract_ChangeContract_ListView" IsNewNode="True" />
+        <PropertyEditor Id="ContractConfirmation" PropertyName="ContractConfirmation" IsNewNode="True" />
+        <PropertyEditor Id="Title" PropertyName="Title" IsNewNode="True" />
+      </Items>
+      <Layout IsNewNode="True">
+        <LayoutGroup Id="Main" Index="0" ShowCaption="False" RelativeSize="100" IsNewNode="True">
+          <LayoutGroup Id="SimpleEditors" Index="0" ShowCaption="False" RelativeSize="29.868421052631579" IsNewNode="True">
+            <LayoutGroup Id="Contract" Index="0" Direction="Horizontal" ShowCaption="True" RelativeSize="85.903083700440533" IsNewNode="True">
+              <LayoutGroup Id="Contract_col1" Index="0" ShowCaption="False" RelativeSize="49.825479930191975" IsNewNode="True">
+                <LayoutItem Id="Title" ViewItem="Title" ShowCaption="" Index="0" RelativeSize="58.333333333333336" SizeConstraintsType="Custom" MinSize="338, 57" IsNewNode="True" />
+                <LayoutItem Id="ContractName" ViewItem="ContractName" ShowCaption="" Index="1" RelativeSize="12.5" IsNewNode="True" />
+                <LayoutItem Id="ContractNo" ViewItem="ContractNo" ShowCaption="" Index="2" RelativeSize="12.5" IsNewNode="True" />
+                <LayoutItem Id="ContractDateRegistration" ViewItem="ContractDateRegistration" ShowCaption="" Index="3" RelativeSize="16.666666666666668" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="Contract_col2" Index="1" ShowCaption="False" RelativeSize="50.174520069808025" IsNewNode="True">
+                <LayoutItem Id="ContractCost" ViewItem="ContractCost" ShowCaption="" Index="0" RelativeSize="16.666666666666668" IsNewNode="True" />
+                <LayoutItem Id="ContractTypes" ViewItem="ContractTypes" ShowCaption="" Index="1" RelativeSize="12.5" IsNewNode="True" />
+                <LayoutItem Id="Sign1" ViewItem="Sign1" ShowCaption="" Index="2" RelativeSize="70.833333333333329" IsNewNode="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="Auto6bec49d0-4e42-4169-bb1f-8da1e75b697a" ShowCaption="False" Caption="Auto6bec49d0-4e42-4169-bb1f-8da1e75b697a(13)" Direction="Horizontal" Index="1" RelativeSize="14.096916299559471" IsNewNode="True">
+              <LayoutItem Id="SignOfConfirmContract" ViewItem="SignOfConfirmContract" Index="0" RelativeSize="43.66554054054054" SizeConstraintsType="Custom" MinSize="517, 64" MaxSize="517, 64" IsNewNode="True" />
+              <LayoutItem Id="ContractConfirmation" ViewItem="ContractConfirmation" Index="1" RelativeSize="56.33445945945946" IsNewNode="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutItem Id="Item1" Index="1" RelativeSize="3.6184210526315788" IsNewNode="True" />
+          <TabbedGroup Id="Tabs" Index="2" RelativeSize="66.513157894736835" IsNewNode="True">
+            <LayoutGroup Id="Attachments" Index="0" ShowCaption="True" RelativeSize="100" Caption="ضمائم" IsNewNode="True">
+              <LayoutItem Id="Attachments" ViewItem="Attachments" ShowCaption="False" Index="0" RelativeSize="35.063559322033896" IsNewNode="True" />
+              <LayoutItem Id="WebForm1" ViewItem="WebForm1" Index="1" RelativeSize="4.4491525423728815" IsNewNode="True" />
+              <LayoutItem Id="Item2" Index="2" RelativeSize="60.487288135593218" IsNewNode="True" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="LogonAttemptsAmountedToLimit_DetailView" RequiredFieldMark="&lt;b&gt;&lt;font color = &quot;red&quot;&gt; * &lt;/font&gt;&lt;/b&gt;" EnableCaptionColon="False" CaptionLocation="Right" CollectionsEditMode="View" />
+    <DetailView Id="ResetPasswordParameters_DetailView" RequiredFieldMark="&lt;b&gt;&lt;font color = &quot;red&quot;&gt; * &lt;/font&gt;&lt;/b&gt;" Caption="تنظیم مجدد کلمه عبور" CollectionsEditMode="View" EnableCaptionColon="False" CaptionLocation="Right" />
+    <DashboardView Id="TaskCardView" Caption="TaskCardView" IsNewNode="True">
+      <Items IsNewNode="True">
+        <ControlDetailItem Id="TaskCardView" ControlTypeName="TradingWebApp.Web.WebForm1" IsNewNode="True" />
+      </Items>
+      <Layout IsNewNode="True">
+        <LayoutGroup Id="Main" IsNewNode="True">
+          <LayoutItem Id="TaskCardView" ViewItem="TaskCardView" Index="0" IsNewNode="True" />
+        </LayoutGroup>
+      </Layout>
+    </DashboardView>
+    <DetailView Id="Users_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="100">
+            <LayoutGroup Id="Users" Direction="Vertical" RelativeSize="100">
+              <LayoutGroup Id="Auto21fcfd77-6cb9-4e07-80b4-ea3b052179f9" ShowCaption="False" Caption="" Direction="Horizontal" Index="0" RelativeSize="4.8484848484848486" IsNewNode="True">
+                <LayoutItem Id="Picture" ViewItem="Picture" Index="0" RelativeSize="50" IsNewNode="True" />
+                <LayoutItem Id="Sign" ViewItem="Sign" Index="1" RelativeSize="50" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutItem Id="Picture" RelativeSize="4.8484848484848486" Index="0" Removed="True" />
+              <LayoutItem Id="Item1" Index="1" RelativeSize="95.151515151515156" IsNewNode="True" />
+              <LayoutItem Id="Sign" RelativeSize="8.3333333333333339" Index="1" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>
